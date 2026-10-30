@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VICO | Kết Nối Di Sản Việt</title>
+    <meta name="description"
+        content="VICO kết nối nghệ nhân, làng nghề truyền thống và doanh nghiệp, lan tỏa tinh hoa di sản Việt Nam.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="/" class="logo">
+            <img src="/uploads/images/LogoVico.png" alt="Logo VICO">
+
+            <span class="logo-text">
+                <strong>VICO</strong>
+                <small>KẾT NỐI DI SẢN VIỆT</small>
+            </span>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Mở menu" aria-expanded="false">☰</button>
+
+        <nav class="nav" id="mainNav">
+            <a href="#trang-chu">Trang chủ</a>
+            <a href="#gioi-thieu">Về VICO</a>
+            <a href="/pages/san-pham.html">Sản phẩm</a>
+            <a href="#di-san">Câu chuyện di sản</a>
+        </nav>
+
+        <div class="header-tools">
+            <a href="/pages/lien-he.html" class="header-contact">Liên hệ</a>
+            <form class="header-search" id="productSearch" role="search">
+                <label class="visually-hidden" for="productSearchInput">Tìm sản phẩm hoặc làng nghề</label>
+                <span class="header-search-icon" aria-hidden="true"></span>
+                <input
+                    type="search"
+                    id="productSearchInput"
+                    name="q"
+                    placeholder="Tìm sản phẩm, làng nghề…"
+                    autocomplete="off"
+                    aria-controls="productGrid"
+                >
+            </form>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="trang-chu">
+            <div class="hero-content">
+                <h1>Nghề truyền thống, gần hơn với thị trường hôm nay.</h1>
+
+                <p>
+                    VICO kết nối nghệ nhân, làng nghề truyền thống và doanh nghiệp,
+                    đưa sản phẩm thủ công Việt đến gần hơn với cộng đồng và thị trường hiện đại.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="/pages/san-pham.html" class="btn btn-primary">
+                        Khám phá di sản ↗
+                    </a>
+                    <a href="#gioi-thieu" class="btn btn-outline">
+                        Câu chuyện VICO
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="hero-visual">
+                <img src="https://images.pexels.com/photos/40061666/pexels-photo-40061666.jpeg"
+                    alt="Nghệ nhân chế tác lồng đèn thủ công tại xưởng — ảnh: HONG SON / Pexels"
+                    width="2048" height="1365" fetchpriority="high">
+                <div class="image-caption">
+                    <strong>Nghệ nhân chế tác lồng đèn thủ công tại xưởng.</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro section" id="gioi-thieu">
+            <div class="intro-content">
+                <h2>Kết nối bắt đầu từ những người làm nghề.</h2>
+
+                <p>
+                    VICO hướng đến việc kết nối nghệ nhân, làng nghề truyền thống và doanh nghiệp,
+                    để sản phẩm mang bản sắc Việt đến gần hơn với cộng đồng và thị trường hiện đại.
+                </p>
+            </div>
+
+            <div class="intro-stats">
+                <div>
+                    <span>Tôn vinh nghệ nhân</span>
+                </div>
+                <div>
+                    <span>Kết nối làng nghề</span>
+                </div>
+                <div>
+                    <span>Lan tỏa văn hóa Việt</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="heritage section" id="di-san">
+            <div class="section-heading">
+                <div>
+                    <h2>Sản phẩm thủ công và câu chuyện phía sau.</h2>
+                </div>
+
+                <a href="/pages/san-pham.html" class="text-link">
+                    Khám phá tất cả ↗
+                </a>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+                <p class="loading is-loading" role="status" aria-live="polite">Đang khám phá những di sản Việt...</p>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Bạn làm nghề hay đang tìm sản phẩm thủ công?</h2>
+            <p>
+                Dù là nghệ nhân, đơn vị sản xuất hay doanh nghiệp, hãy chia sẻ nhu cầu của bạn
+                để cùng VICO bắt đầu cuộc trao đổi về hướng kết nối phù hợp.
+            </p>
+            <a href="/pages/lien-he.html" class="btn btn-light">
+                Kết nối cùng VICO ↗
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="/" class="logo footer-logo">
+            <img src="/uploads/images/LogoVico.png" alt="">
+            <span class="logo-text">
+                <strong>VICO</strong>
+                <small>KẾT NỐI DI SẢN VIỆT</small>
+            </span>
+        </a>
+
+        <p>Gìn giữ giá trị truyền thống, kiến tạo kết nối tương lai.</p>
+        <div class="footer-bottom">
+            <span>© 2026 VICO – Kết Nối Di Sản Việt</span>
+            <a href="/pages/lien-he.html">Liên hệ hợp tác ↗</a>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

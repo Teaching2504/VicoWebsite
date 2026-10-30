@@ -1,0 +1,24 @@
+{
+  "desktop": {
+    "viewport": [
+      1440,
+      1000
+    ],
+    "documentWidth": 1425,
+    "headerHeight": 107.25,
+    "heroHeight": 1523.4500732421875,
+    "heroVisualHeight": 811.75,
+    "productGridDisplay": "grid"
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "documentWidth": 375,
+    "menuDisplay": "flex",
+    "menuClasses": "nav open",
+    "menuExpanded": "true",
+    "logoWidth": 267.3125
+  }
+}
