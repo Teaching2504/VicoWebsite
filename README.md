@@ -15,6 +15,9 @@ VICO là website giới thiệu và lan tỏa giá trị văn hóa, làng nghề
 - Carousel có video làng nghề, ảnh Gốm Biên Hòa và ảnh Lân Sư Rồng.
 - Chuyển banner bằng nút tam giác hoặc chấm điều hướng; nội dung và số thứ tự tự cập nhật theo danh sách slide.
 - Cuộn trang để xem banner phóng lớn dần.
+- Trang Sản phẩm riêng với 8 sản phẩm/dịch vụ, giá tham khảo, thư viện ảnh cho các mục đã có ảnh, hướng dẫn đặt dịch vụ và liên hệ tư vấn.
+- Trang Về chúng tôi riêng, giới thiệu định hướng VICO, hành trình dự án và các thành viên.
+- Trang Liên hệ riêng với form tư vấn và thông tin liên hệ VICO.
 - Thanh điều hướng co gọn thành menu trên màn hình nhỏ.
 - Các phần nội dung giới thiệu giá trị di sản, nghệ nhân và thông tin liên hệ VICO.
 
@@ -36,6 +39,7 @@ VicoWebsite/
    │  ├─ images/
    │  │  ├─ banner2.jpeg       # Ảnh Lân Sư Rồng
    │  │  ├─ banner3.jpg        # Ảnh Gốm Biên Hòa
+   │  │  └─ products/          # Ảnh sản phẩm theo nhóm làng nghề
    │  │  └─ vicologo.png       # Logo VICO
    │  └─ videos/
    │     └─ heritage-h264.mp4  # Video banner
@@ -72,14 +76,30 @@ Mở địa chỉ Local mà Vite in trong Terminal (thường là <http://localh
 
 Không cần cài database hoặc chạy backend riêng.
 
+## Đưa website lên GitHub Pages
+
+Repo đã có workflow tự build thư mục `frontend` và deploy khi có commit mới lên nhánh `main`. Trong GitHub, vào **Settings → Pages**, đặt **Build and deployment → Source** thành **GitHub Actions**. Workflow dùng đường dẫn `/VicoWebsite/` cho địa chỉ project Pages; chạy local vẫn dùng đường dẫn gốc.
+
+Sau khi lưu thay đổi ở máy, mở Terminal tại thư mục gốc repo và chạy:
+
+```powershell
+git add .
+git commit -m "Update VICO website"
+git push origin main
+```
+
+Mở tab **Actions** để xem hai bước build và deploy. Khi cả hai có dấu xanh, mở địa chỉ được ghi trong **Settings → Pages**. Những lần push tiếp theo lên `main` sẽ tự cập nhật website.
+
 ## Các khu vực trên website
 
 | Khu vực | Nội dung | Cách mở |
 | --- | --- | --- |
 | Trang chủ | Thông điệp VICO, tiêu đề và banner carousel | `/#home` |
-| Giá trị di sản | Định hướng gìn giữ và đưa di sản đến gần cộng đồng | `/#heritage` |
+| Sản phẩm | Tám mục sản phẩm/dịch vụ, xem chi tiết, gói giá và liên hệ tư vấn | `/?page=products` |
+| Về chúng tôi | Sứ mệnh, hành trình dự án và đội ngũ VICO | `/?page=about` |
 | Nghệ nhân | Tôn vinh nghệ nhân và câu chuyện làng nghề | `/#artisans` |
-| Liên hệ | Lời mời kết nối cùng VICO | `/#contact` |
+| Giá trị di sản | Định hướng gìn giữ và đưa di sản đến gần cộng đồng | `/#heritage` |
+| Liên hệ | Form tư vấn, địa chỉ, điện thoại và email | `/?page=contact` |
 
 ## Kịch bản trình diễn
 
@@ -87,6 +107,21 @@ Không cần cài database hoặc chạy backend riêng.
 2. Dùng nút tam giác để chuyển qua video, Gốm Biên Hòa và Lân Sư Rồng.
 3. Cuộn trang để trình bày hiệu ứng banner phóng lớn.
 4. Tiếp tục cuộn tới các phần giá trị di sản, nghệ nhân và liên hệ.
+5. Mở trang Sản phẩm, xem chi tiết một mục rồi bấm liên hệ tư vấn để thấy chủ đề được điền sẵn trong form.
+6. Mở trang Về chúng tôi để giới thiệu sứ mệnh, hành trình dự án và đội ngũ.
+7. Điền form liên hệ để gửi yêu cầu tư vấn tới Formspree.
+
+### Form liên hệ gửi thông tin đi đâu?
+
+Formspree nhận form từ website tĩnh và gửi thông báo tới email đã xác nhận trong tài khoản. Endpoint hiện tại của VICO đã được khai báo trong frontend.
+
+Nếu cần đổi endpoint khi chạy local, trong `frontend` sao chép `.env.example` thành `.env.local` rồi cập nhật biến:
+
+```text
+VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/your_form_id
+```
+
+Khởi động lại `npm run dev` sau khi thay đổi. Form gửi nội dung qua endpoint Formspree tới email đã xác nhận trong tài khoản VICO. Xem [hướng dẫn chính thức](https://help.formspree.io/articles/building-your-form/building-an-html-form) nếu cần tạo form hoặc thay endpoint.
 
 ## Thay ảnh hoặc video banner
 
