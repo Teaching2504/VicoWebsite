@@ -1082,6 +1082,26 @@
   padding: clamp(54px, 7vw, 100px) clamp(24px, 6vw, 112px) 100px;
 }
 
+@media (min-width: 1200px) {
+  .contact-section h2 {
+    width: max-content;
+    max-width: 100%;
+    margin-inline: auto;
+    white-space: nowrap;
+    font-size: clamp(36px, 4vw, 55px);
+  }
+
+  .about-team .about-section-heading {
+    max-width: none;
+  }
+
+  .about-team .about-section-heading h2,
+  .about-team .about-section-heading > p:not(.eyebrow) {
+    max-width: none;
+    white-space: nowrap;
+  }
+}
+
 .page-heading {
   max-width: 920px;
   margin: 0 auto 46px;

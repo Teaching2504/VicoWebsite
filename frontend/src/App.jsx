@@ -788,18 +788,18 @@ function App() {
             </div>
             <div className="about-team-grid">
               <article className="about-team-card">
-                <img className="about-team-photo" src="/images/team/trinh.jpg" alt="Nguyễn Thị Tuyết Trinh" loading="lazy" />
+                <img className="about-team-photo" src={publicAsset("/images/team/trinh.jpg")} alt="Nguyễn Thị Tuyết Trinh" loading="lazy" />
                 <h3>Nguyễn Thị Tuyết Trinh</h3>
                 <p>Công nghệ thông tin</p>
               </article>
               <article className="about-team-card">
-                <img className="about-team-photo" src="/images/team/quan.jpg" alt="Nguyễn Quang Quân" loading="lazy" />
+                <img className="about-team-photo" src={publicAsset("/images/team/quan.jpg")} alt="Nguyễn Quang Quân" loading="lazy" />
                 <h3>Nguyễn Quang Quân</h3>
                 <p className="about-team-role">Trưởng nhóm</p>
                 <p>Khoa học xã hội</p>
               </article>
               <article className="about-team-card">
-                <img className="about-team-photo" src="/images/team/dieu.jpg" alt="Trần Ngọc Diệp" loading="lazy" />
+                <img className="about-team-photo" src={publicAsset("/images/team/dieu.jpg")} alt="Trần Ngọc Diệp" loading="lazy" />
                 <h3>Trần Ngọc Diệp</h3>
                 <p>Quản trị kinh doanh</p>
               </article>
