@@ -106,6 +106,7 @@ const products = [
     title: "Mành trúc Tân Thông Hội",
     description: "Mành trúc trang trí không gian và mành trúc tranh theo kích thước yêu cầu.",
     detail: "Mành trúc Tân Thông Hội là sản phẩm thủ công truyền thống có tính ứng dụng trong trang trí không gian và thiết kế nội thất. Chất liệu trúc mộc mạc tạo điểm nhấn văn hóa cho văn phòng, nhà hàng, sự kiện và khu vực đón khách.",
+    images: [1, 2, 3].map((n) => publicAsset(`/images/products/manh-truc/manhtruc${n === 1 ? "1jpg" : n}.jpg`)),
     priceSummary: "Mành trúc từ 1.000.000 VNĐ",
     packages: [
       "Trang trí không gian: gói nhỏ 5–8 m² · 2.500.000 VNĐ; tiêu chuẩn 10–15 m² · 5.000.000 VNĐ; gói lớn 20–30 m² · 9.000.000 VNĐ",
@@ -118,6 +119,7 @@ const products = [
     title: "Nón lá",
     description: "Workshop trang trí nón lá theo chủ đề và nón lá làm quà tặng doanh nghiệp.",
     detail: "Nón lá gắn liền với hình ảnh và đời sống văn hóa Việt Nam. VICO kết nối doanh nghiệp với hoạt động trải nghiệm trang trí nón lá hoặc lựa chọn nón làm quà tặng, có thể tùy chỉnh họa tiết, thông điệp và bao bì theo yêu cầu.",
+    images: [1, 2, 3, 4, 5].map((n) => publicAsset(`/images/products/non-la/nonla${n}.jpg`)),
     priceSummary: "Gói dịch vụ từ 5.000.000 VNĐ",
     packages: [
       "Workshop trải nghiệm trang trí nón lá · 12.500.000 VNĐ/gói (50 người)",
@@ -130,6 +132,7 @@ const products = [
     title: "Vẽ bảng hiệu thủ công",
     description: "Bảng hiệu vẽ tay, kết hợp chữ nghệ thuật và họa tiết theo nhận diện thương hiệu.",
     detail: "Dịch vụ vẽ bảng hiệu thủ công tạo điểm nhấn riêng cho cửa hàng, quán cà phê, nhà hàng, gian hàng triển lãm và không gian sự kiện. Thiết kế được kết nối theo kích thước, phong cách và ngân sách của doanh nghiệp.",
+    images: [1, 2, 3].map((n) => publicAsset(`/images/products/ve-bang-hieu/vebanghieu${n}.jpg`)),
     priceSummary: "Từ 800.000 VNĐ/bảng",
     packages: [
       "Bảng hiệu cơ bản · 800.000 VNĐ · 60 × 40 cm",
@@ -143,6 +146,7 @@ const products = [
     title: "Thuê trang phục truyền thống",
     description: "Áo dài, áo tứ thân và áo bà ba cho sự kiện, hoạt động văn hóa và chụp ảnh.",
     detail: "Dịch vụ cho thuê trang phục truyền thống giúp doanh nghiệp chuẩn bị trang phục phù hợp cho sự kiện và hoạt động trải nghiệm. VICO hỗ trợ kết nối đơn vị cho thuê, tư vấn số lượng, kích cỡ, thời gian thuê và phương án giao nhận.",
+    images: [1, 2, 3].map((n) => publicAsset(`/images/products/thue-trang-phuc/thuetrangphuc${n}.jpg`)),
     priceSummary: "Gói thuê từ 800.000 VNĐ/10 người",
     packages: [
       "Áo dài truyền thống · 1.500.000 VNĐ/10 người",
@@ -784,17 +788,18 @@ function App() {
             </div>
             <div className="about-team-grid">
               <article className="about-team-card">
-                <span className="about-team-initial">Q</span>
-                <h3>Nguyễn Quang Quân</h3>
-                <p>Trưởng nhóm · Khoa học xã hội</p>
-              </article>
-              <article className="about-team-card">
-                <span className="about-team-initial">T</span>
+                <img className="about-team-photo" src="/images/team/trinh.jpg" alt="Nguyễn Thị Tuyết Trinh" loading="lazy" />
                 <h3>Nguyễn Thị Tuyết Trinh</h3>
                 <p>Công nghệ thông tin</p>
               </article>
               <article className="about-team-card">
-                <span className="about-team-initial">D</span>
+                <img className="about-team-photo" src="/images/team/quan.jpg" alt="Nguyễn Quang Quân" loading="lazy" />
+                <h3>Nguyễn Quang Quân</h3>
+                <p className="about-team-role">Trưởng nhóm</p>
+                <p>Khoa học xã hội</p>
+              </article>
+              <article className="about-team-card">
+                <img className="about-team-photo" src="/images/team/dieu.jpg" alt="Trần Ngọc Diệp" loading="lazy" />
                 <h3>Trần Ngọc Diệp</h3>
                 <p>Quản trị kinh doanh</p>
               </article>

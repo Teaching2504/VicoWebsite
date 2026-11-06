@@ -21,17 +21,17 @@
 .navbar {
   position: relative;
   z-index: 10;
-  width: calc(100% - 64px);
-  max-width: 1376px;
+  width: 100%;
+  max-width: none;
   min-height: 78px;
-  margin: 16px auto 0;
-  padding: 12px 24px;
+  margin: 0 auto;
+  padding: 12px clamp(24px, 5vw, 88px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   border: 1px solid var(--border);
-  border-radius: 22px;
+  border-radius: 0;
   background: rgba(255, 254, 251, 0.9);
   box-shadow: 0 8px 30px #1a34700a;
   backdrop-filter: blur(18px);
@@ -624,7 +624,7 @@
   z-index: 1;
   opacity: calc(1 - var(--hero-transition, 0));
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: auto;
   padding: 22px 5.5%;
   display: flex;
@@ -813,9 +813,10 @@
 
 /* PRODUCT AND CONTACT PAGES */
 .about-page {
-  width: min(100%, 1440px);
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
-  padding: clamp(54px, 7vw, 96px) clamp(24px, 7vw, 100px) 100px;
+  padding: clamp(54px, 7vw, 96px) clamp(24px, 6vw, 112px) 100px;
 }
 
 .about-hero {
@@ -1006,6 +1007,17 @@
   background: var(--ivory-light);
 }
 
+.about-team-photo {
+  display: block;
+  width: min(100%, 220px);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto 20px;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center 35%;
+  background: #eee9dd;
+}
+
 .about-team-initial {
   width: 56px;
   height: 56px;
@@ -1032,6 +1044,15 @@
   line-height: 1.6;
 }
 
+.about-team-card p.about-team-role {
+  margin-top: 10px;
+  color: var(--blue-mid);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .about-contact-link {
   min-height: 45px;
   padding: 0 19px;
@@ -1054,10 +1075,11 @@
 
 .products-page,
 .contact-page {
-  width: min(100%, 1440px);
+  width: 100%;
+  max-width: none;
   min-height: 68vh;
   margin: 0 auto;
-  padding: clamp(54px, 7vw, 100px) clamp(24px, 7vw, 100px) 100px;
+  padding: clamp(54px, 7vw, 100px) clamp(24px, 6vw, 112px) 100px;
 }
 
 .page-heading {
@@ -1366,6 +1388,26 @@
 }
 
 /* Keep product cards readable as the catalog grows. */
+@media (max-width: 900px) {
+  .about-journey {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-journey-image {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .about-journey-copy {
+    min-width: 0;
+  }
+
+  .about-journey-copy h2 {
+    font-size: clamp(30px, 5vw, 42px);
+    overflow-wrap: anywhere;
+  }
+}
+
 @media (max-width: 1100px) {
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1373,22 +1415,50 @@
 }
 
 @media (max-width: 760px) {
+  .product-modal-backdrop {
+    align-items: center;
+    padding: 10px;
+  }
+
   .product-modal {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 560px;
     height: auto;
     min-height: 0;
+    max-height: 92dvh;
     overflow-y: auto;
   }
 
   .product-modal-gallery {
-    min-height: 280px;
+    flex: 0 0 auto;
+    min-height: 0;
+    gap: 10px;
+    padding: 12px;
   }
 
   .product-modal-main-image {
-    min-height: 220px;
-    max-height: 36vh;
+    width: 100%;
+    height: min(38vh, 300px);
+    min-height: 190px;
+    max-height: none;
     flex: 0 0 auto;
+  }
+
+  .product-modal-thumbnails {
+    flex: 0 0 auto;
+    min-height: 58px;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .product-modal-thumbnails button {
+    width: 68px;
+    height: 54px;
   }
 
   .product-modal-no-image {
@@ -1647,7 +1717,7 @@
 /* TABLET */
 @media (max-width: 1050px) {
   .navbar {
-    width: calc(100% - 32px);
+    width: 100%;
     padding: 12px 16px;
     gap: 12px;
   }
@@ -1686,8 +1756,8 @@
 @media (max-width: 760px) {
   .navbar {
     min-height: 72px;
-    margin-top: 12px;
-    border-radius: 18px;
+    margin-top: 0;
+    border-radius: 0;
     flex-wrap: wrap;
   }
 
