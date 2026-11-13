@@ -181,10 +181,12 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeProductImage, setActiveProductImage] = useState(0);
   const [contactForm, setContactForm] = useState({
+    company: "",
     name: "",
     email: "",
     phone: "",
     topic: "",
+    budget: "",
     message: "",
   });
   const [emailDraft, setEmailDraft] = useState("");
@@ -374,7 +376,7 @@ function App() {
         if (!response.ok) throw new Error("Form submission failed");
 
         setFormNotice("Cảm ơn bạn! Yêu cầu tư vấn đã được gửi tới VICO.");
-        setContactForm({ name: "", email: "", phone: "", topic: "", message: "" });
+        setContactForm({ company: "", name: "", email: "", phone: "", topic: "", budget: "", message: "" });
         formElement.reset();
       } catch {
         setFormNotice("Chưa gửi được yêu cầu. Bạn vui lòng thử lại hoặc liên hệ VICO qua email và số điện thoại bên cạnh.");
@@ -388,10 +390,12 @@ function App() {
       ? `Tư vấn ${contactForm.topic}`
       : "Yêu cầu liên hệ VICO";
     const body = [
+      `Doanh nghiệp / tổ chức: ${contactForm.company || "Chưa cung cấp"}`,
       `Họ và tên: ${contactForm.name}`,
       `Email: ${contactForm.email}`,
       `Số điện thoại: ${contactForm.phone || "Chưa cung cấp"}`,
       `Quan tâm: ${contactForm.topic || "Chưa chọn"}`,
+      `Ngân sách dự kiến: ${contactForm.budget || "Chưa xác định"}`,
       "",
       "Nội dung:",
       contactForm.message,
@@ -1103,56 +1107,109 @@ function App() {
 
           <div className="contact-page-layout" data-reveal>
             <form className="contact-form" onSubmit={handleContactSubmit}>
+              <div className="contact-form-intro">
+                <h2>Yêu cầu tư vấn giải pháp văn hóa</h2>
+                <p>Điền thông tin để VICO đề xuất giải pháp phù hợp với nhu cầu của bạn.</p>
+              </div>
+              <label className="contact-form-company">
+                <span className="contact-field-label">Tên doanh nghiệp / tổ chức <span className="contact-required" aria-hidden="true">*</span></span>
+                <input
+                  autoComplete="organization"
+                  name="company"
+                  placeholder="Nhập tên doanh nghiệp"
+                  required
+                  value={contactForm.company}
+                  onChange={(event) => setContactForm({ ...contactForm, company: event.target.value })}
+                />
+              </label>
               <label>
-                Họ và tên <span aria-hidden="true">*</span>
+                <span className="contact-field-label">Người liên hệ <span className="contact-required" aria-hidden="true">*</span></span>
                 <input
                   autoComplete="name"
                   name="name"
+                  placeholder="Họ và tên"
                   required
                   value={contactForm.name}
                   onChange={(event) => setContactForm({ ...contactForm, name: event.target.value })}
                 />
               </label>
               <label>
-                Email <span aria-hidden="true">*</span>
+                <span className="contact-field-label">Số điện thoại <span className="contact-required" aria-hidden="true">*</span></span>
+                <input
+                  autoComplete="tel"
+                  name="phone"
+                  type="tel"
+                  placeholder="Số liên hệ"
+                  required
+                  value={contactForm.phone}
+                  onChange={(event) => setContactForm({ ...contactForm, phone: event.target.value })}
+                />
+              </label>
+              <label className="contact-form-email">
+                <span className="contact-field-label">Email doanh nghiệp <span className="contact-required" aria-hidden="true">*</span></span>
                 <input
                   autoComplete="email"
                   name="email"
                   type="email"
+                  placeholder="example@company.com"
                   required
                   value={contactForm.email}
                   onChange={(event) => setContactForm({ ...contactForm, email: event.target.value })}
                 />
               </label>
-              <label>
-                Số điện thoại
-                <input
-                  autoComplete="tel"
-                  name="phone"
-                  type="tel"
-                  value={contactForm.phone}
-                  onChange={(event) => setContactForm({ ...contactForm, phone: event.target.value })}
-                />
-              </label>
-              <label>
-                Bạn quan tâm đến
+              <label className="contact-form-topic">
+                <span className="contact-field-label">Bạn quan tâm đến <span className="contact-required" aria-hidden="true">*</span></span>
                 <select
                   name="topic"
+                  required
                   value={contactForm.topic}
                   onChange={(event) => setContactForm({ ...contactForm, topic: event.target.value })}
                 >
                   <option value="">Chọn nội dung quan tâm</option>
-                  {products.map((product) => (
-                    <option key={product.title} value={product.title}>{product.title}</option>
-                  ))}
-                  <option value="Hợp tác khác">Hợp tác khác</option>
+                  <optgroup label="Sản phẩm và làng nghề">
+                    <option value="Lồng đèn Phú Bình">Lồng đèn Phú Bình</option>
+                    <option value="Múa Lân Sư Rồng">Múa Lân Sư Rồng</option>
+                    <option value="Gốm Biên Hòa">Gốm Biên Hòa</option>
+                    <option value="Đan lát Thái Mỹ">Đan lát Thái Mỹ</option>
+                    <option value="Mành trúc Tân Thông Hội">Mành trúc Tân Thông Hội</option>
+                    <option value="Nón lá">Nón lá</option>
+                    <option value="Vẽ bảng hiệu thủ công">Vẽ bảng hiệu thủ công</option>
+                    <option value="Thuê trang phục truyền thống">Thuê trang phục truyền thống</option>
+                  </optgroup>
+                  <optgroup label="Dịch vụ">
+                    <option value="Quà tặng văn hóa & sản phẩm thủ công">Quà tặng văn hóa &amp; sản phẩm thủ công</option>
+                    <option value="Trang trí không gian & sự kiện">Trang trí không gian &amp; sự kiện</option>
+                    <option value="Workshop & trải nghiệm làng nghề">Workshop &amp; trải nghiệm làng nghề</option>
+                    <option value="Biểu diễn & hoạt động văn hóa">Biểu diễn &amp; hoạt động văn hóa</option>
+                    <option value="Tư vấn giải pháp khác">Tư vấn giải pháp khác</option>
+                    <option value="Hợp tác khác">Hợp tác khác</option>
+                  </optgroup>
                 </select>
               </label>
+              <fieldset className="contact-choice-group contact-budget-group">
+                <legend>Ngân sách dự kiến <span aria-hidden="true">*</span></legend>
+                <div className="contact-radio-list">
+                  {["Dưới 5 triệu đồng", "5–15 triệu đồng", "15–30 triệu đồng", "Trên 30 triệu đồng", "Cần VICO tư vấn ngân sách"].map((budget) => (
+                    <label key={budget}>
+                      <input
+                        type="radio"
+                        name="budget"
+                        value={budget}
+                        required
+                        checked={contactForm.budget === budget}
+                        onChange={(event) => setContactForm({ ...contactForm, budget: event.target.value })}
+                      />
+                      <span>{budget}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
               <label className="contact-form-message">
-                Nội dung cần tư vấn <span aria-hidden="true">*</span>
+                <span className="contact-field-label">Mô tả nhu cầu <span className="contact-required" aria-hidden="true">*</span></span>
                 <textarea
                   name="message"
                   rows="5"
+                  placeholder="Ví dụ: Doanh nghiệp cần 100 phần quà thủ công tặng đối tác trong tháng 12, ưu tiên sản phẩm mang bản sắc văn hóa Việt..."
                   required
                   value={contactForm.message}
                   onChange={(event) => setContactForm({ ...contactForm, message: event.target.value })}
