@@ -13,6 +13,15 @@ import {
   ChevronRight,
   Menu,
   X,
+  Gift,
+  Store,
+  Sparkles,
+  Theater,
+  Search,
+  ClipboardList,
+  MessageCircle,
+  Handshake,
+  Sprout,
 } from "lucide-react";
 import "./App.css";
 
@@ -164,6 +173,8 @@ const readPageFromUrl = () => {
 
 function App() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [visibleDifferenceCount, setVisibleDifferenceCount] = useState(1);
+  const [visibleServiceCount, setVisibleServiceCount] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [currentPage, setCurrentPage] = useState(readPageFromUrl);
@@ -644,6 +655,143 @@ function App() {
 
         </div>
       </div>
+
+      <section className="home-info-banners" aria-label="Giải pháp văn hóa VICO">
+        <article className="home-info-banner home-info-banner-services" data-reveal>
+          <img className="home-info-banner-art" src={publicAsset("/images/home-banners/services.png")} alt="Minh họa các sản phẩm và hoạt động văn hóa truyền thống" loading="lazy" />
+          <div className="home-info-banner-content">
+            <p className="eyebrow">GIẢI PHÁP VĂN HÓA TRỌN GÓI</p>
+            <h2><span>Chúng tôi cung cấp</span><strong>Dịch vụ gì?</strong></h2>
+            <p className="home-info-banner-description">
+              VICO kết nối các làng nghề truyền thống với doanh nghiệp, trường học và cá nhân, mang đến đa dạng giải pháp từ quà tặng thủ công, trang trí không gian, tổ chức sự kiện đến workshop trải nghiệm văn hóa. Mỗi dịch vụ được tư vấn và thiết kế phù hợp với nhu cầu, góp phần đưa giá trị văn hóa Việt vào đời sống hiện đại.
+            </p>
+            <div className={`home-info-pills is-count-${visibleServiceCount}`} aria-label="Các nhóm dịch vụ" aria-live="polite">
+              {[
+                { icon: <Gift size={29} />, label: <>Quà tặng<br />văn hóa</> },
+                { icon: <Store size={29} />, label: <>Trang trí<br />sự kiện</> },
+                { icon: <Sparkles size={29} />, label: <>Workshop<br />trải nghiệm</> },
+                { icon: <Theater size={29} />, label: <>Biểu diễn<br />truyền thống</> },
+              ].slice(0, visibleServiceCount).map((service, index) => (
+                <div className="home-info-pill" key={index}>{service.icon}<span>{service.label}</span></div>
+              ))}
+            </div>
+            <div className="home-service-controls">
+              <button
+                className="home-service-arrow is-prev"
+                type="button"
+                aria-label="Lùi về số dịch vụ trước"
+                disabled={visibleServiceCount === 1}
+                onClick={() => setVisibleServiceCount((count) => Math.max(1, count - 1))}
+              />
+              <div className="home-service-pagination" role="group" aria-label="Chọn số lượng dịch vụ hiển thị">
+                {[1, 2, 3, 4].map((count) => (
+                  <button
+                    className={visibleServiceCount === count ? "is-active" : ""}
+                    type="button"
+                    key={count}
+                    aria-label={`Hiện ${count} dịch vụ`}
+                    aria-pressed={visibleServiceCount === count}
+                    onClick={() => setVisibleServiceCount(count)}
+                  >{count}</button>
+                ))}
+              </div>
+              <button
+                className="home-service-arrow is-next"
+                type="button"
+                aria-label="Tiến tới số dịch vụ tiếp theo"
+                disabled={visibleServiceCount === 4}
+                onClick={() => setVisibleServiceCount((count) => Math.min(4, count + 1))}
+              />
+            </div>
+          </div>
+        </article>
+
+        <article className="home-info-banner home-info-banner-consultation" data-reveal>
+          <img className="home-info-banner-art" src={publicAsset("/images/home-banners/consultation.png")} alt="Minh họa quy trình tư vấn dịch vụ văn hóa" loading="lazy" />
+          <div className="home-info-banner-content">
+            <div className="home-consultation-heading">
+              <p className="eyebrow">ĐỒNG HÀNH TỪ Ý TƯỞNG ĐẾN TRIỂN KHAI</p>
+              <h2><span>Gửi yêu cầu tư vấn</span><strong>chỉ với 4 bước</strong></h2>
+              <p className="home-info-banner-description">
+                Từ ý tưởng đến triển khai, VICO đồng hành cùng doanh nghiệp qua quy trình tư vấn đơn giản: khám phá dịch vụ, gửi yêu cầu, nhận đề xuất giải pháp và thống nhất phương án thực hiện. Chỉ cần chia sẻ nhu cầu, VICO sẽ hỗ trợ kết nối nguồn lực và xây dựng giải pháp phù hợp với mục tiêu, quy mô và ngân sách của doanh nghiệp.
+              </p>
+            </div>
+            <div className="home-consultation-steps">
+              <div className="home-consultation-step"><span className="home-step-number">01</span><Search size={34} /><strong>Khám phá<br />dịch vụ</strong></div>
+              <span className="home-step-arrow" aria-hidden="true">→</span>
+              <div className="home-consultation-step"><span className="home-step-number">02</span><ClipboardList size={34} /><strong>Gửi yêu cầu<br />tư vấn</strong></div>
+              <span className="home-step-arrow" aria-hidden="true">→</span>
+              <div className="home-consultation-step"><span className="home-step-number">03</span><MessageCircle size={34} /><strong>Nhận đề xuất<br />giải pháp</strong></div>
+              <span className="home-step-arrow" aria-hidden="true">→</span>
+              <div className="home-consultation-step"><span className="home-step-number">04</span><Handshake size={34} /><strong>Thống nhất &amp;<br />triển khai</strong></div>
+            </div>
+            <a
+              className="home-consultation-cta"
+              href="?page=contact"
+              onClick={(event) => { event.preventDefault(); navigateToPage("contact"); }}
+            >
+              Gửi yêu cầu tư vấn ngay <ArrowUpRight size={19} />
+            </a>
+          </div>
+        </article>
+
+        <article className="home-info-banner home-info-banner-difference" data-reveal>
+          <img className="home-info-banner-art" src={publicAsset("/images/home-banners/difference.png")} alt="Không gian kết nối sản phẩm và dịch vụ làng nghề của VICO" loading="lazy" />
+          <div className="home-info-banner-content">
+            <p className="eyebrow home-difference-eyebrow">MÔ HÌNH KẾT NỐI DI SẢN VIỆT</p>
+            <h2 className="home-difference-title">Điểm khác biệt của VICO</h2>
+            <div className="home-difference-copy">
+              <h3><span>Một đầu mối kết nối</span><strong>Đa dạng giải pháp văn hóa</strong></h3>
+              <p className="home-info-banner-description">
+                Không chỉ cung cấp sản phẩm thủ công, VICO đóng vai trò cầu nối giữa làng nghề, nghệ nhân và khách hàng. Thông qua mô hình kết nối và điều phối tập trung, VICO mang đến những giải pháp văn hóa linh hoạt, phù hợp với từng nhu cầu, đồng thời góp phần gìn giữ và lan tỏa giá trị nghề truyền thống Việt Nam.
+              </p>
+              <div className="home-difference-carousel" aria-label="Điểm khác biệt của VICO">
+                <div className={`home-info-pills home-difference-pills is-count-${visibleDifferenceCount}`} aria-live="polite">
+                  {[
+                    { Icon: Handshake, title: <>Kết nối<br />làng nghề</>, label: "Kết nối làng nghề" },
+                    { Icon: ClipboardList, title: <>Giải pháp<br />theo nhu cầu</>, label: "Giải pháp theo nhu cầu" },
+                    { Icon: Users, title: <>Điều phối<br />tập trung</>, label: "Điều phối tập trung" },
+                    { Icon: Sprout, title: <>Lan tỏa<br />giá trị Việt</>, label: "Lan tỏa giá trị Việt" },
+                  ].slice(0, visibleDifferenceCount).map(({ Icon, title, label }) => (
+                      <div className="home-info-pill home-difference-feature" key={label}>
+                        <Icon size={38} aria-hidden="true" />
+                        <span>{title}</span>
+                      </div>
+                  ))}
+                </div>
+                <div className="home-difference-controls">
+                  <button
+                    className="home-service-arrow home-difference-arrow is-prev"
+                    type="button"
+                    aria-label="Điểm khác biệt trước"
+                    disabled={visibleDifferenceCount === 1}
+                    onClick={() => setVisibleDifferenceCount((count) => Math.max(1, count - 1))}
+                  />
+                  <div className="home-difference-dots" role="group" aria-label="Chọn điểm khác biệt">
+                    {["Kết nối làng nghề", "Giải pháp theo nhu cầu", "Điều phối tập trung", "Lan tỏa giá trị Việt"].map((label, index) => (
+                      <button
+                        key={label}
+                        type="button"
+                        className={`home-difference-dot${visibleDifferenceCount === index + 1 ? " is-active" : ""}`}
+                        aria-label={`Hiện ${index + 1} nội dung: ${label}`}
+                        aria-pressed={visibleDifferenceCount === index + 1}
+                        onClick={() => setVisibleDifferenceCount(index + 1)}
+                      >{index + 1}</button>
+                    ))}
+                  </div>
+                  <button
+                    className="home-service-arrow home-difference-arrow is-next"
+                    type="button"
+                    aria-label="Điểm khác biệt tiếp theo"
+                    disabled={visibleDifferenceCount === 4}
+                    onClick={() => setVisibleDifferenceCount((count) => Math.min(4, count + 1))}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
 
       {/* GIỚI THIỆU DI SẢN */}
       <section className="intro-section" id="heritage" data-reveal>
